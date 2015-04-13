@@ -65,7 +65,8 @@ public class ClientCommunicationProtocol
 		
 		//we only need to spawn a byteRequestThread since we have
 		//all of the bytes already
-		brt = new byteRequestThread(this.theFileBytes);
+		brt = new byteRequestThread(this.theFileBytes,this.theServer);
+		System.out.println("Starting byte Request");
 		brt.start();
 	}
 	
@@ -81,9 +82,9 @@ public class ClientCommunicationProtocol
 		//since we are participating in sharing the portion of the
 		//file we have, and we want to fill in the rest of the file
 		//we do not have
-		brt = new byteRequestThread(this.theFileBytes);
+		brt = new byteRequestThread(this.theFileBytes, theServer);
 		brt.start();
-		fft = new fileFillThread(this.theFileBytes);
+		fft = new fileFillThread(this.theFileBytes, theServer);
 		fft.start();
 	}
 	
